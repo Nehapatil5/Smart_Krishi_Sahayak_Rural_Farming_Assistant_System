@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Krishi Expert Dashboard - Agricultural Portal</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+        display: flex;
+        min-height: 100vh;
+    }
+    
+    /* Sidebar Styles */
+    .sidebar {
+        width: 250px;
+        background-color: #333;
+        color: #fff;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding: 20px 0;
+        transition: all 0.3s;
+        z-index: 1000;
+    }
+    
+    .sidebar-header {
+        padding: 0 20px 20px;
+        border-bottom: 1px solid #444;
+        margin-bottom: 20px;
+    }
+    
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+    }
+    
+    .logo span {
+        color: #4CAF50;
+    }
+    
+    .sidebar-menu {
+        list-style: none;
+    }
+    
+    .sidebar-menu li {
+        margin-bottom: 5px;
+    }
+    
+    .sidebar-menu a {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        color: #ccc;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    
+    .sidebar-menu a:hover {
+        background-color: #444;
+        color: #fff;
+    }
+    
+    .sidebar-menu a.active {
+        background-color: #4CAF50;
+        color: #fff;
+    }
+    
+    .menu-icon {
+        margin-right: 10px;
+        font-size: 18px;
+        width: 20px;
+        text-align: center;
+    }
+    
+    /* Main Content Styles */
+    .main-content {
+        flex: 1;
+        margin-left: 250px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    /* Navbar Styles */
+    .navbar {
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .navbar-left h1 {
+        font-size: 24px;
+        color: #333;
+    }
+    
+    .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .user-info span {
+        font-weight: 500;
+        color: #333;
+    }
+    
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        background-color: #4CAF50;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+    }
+    
+    .logout-btn {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .logout-btn:hover {
+        background-color: #d32f2f;
+    }
+    
+    /* Content Area */
+    .content {
+        flex: 1;
+        padding: 30px;
+    }
+    
+    .dashboard-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .dashboard-header h2 {
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .dashboard-header p {
+        color: #666;
+        font-size: 18px;
+    }
+    
+    /* Dashboard Grid */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .dashboard-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+    }
+    
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+        color: #4CAF50;
+    }
+    
+    .dashboard-card h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+    
+    .dashboard-card p {
+        color: #666;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    
+    .card-link {
+        display: inline-block;
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.3s;
+        width: 100%;
+    }
+    
+    .card-link:hover {
+        background-color: #4CAF50;
+    }
+    
+    /* Footer */
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px 30px;
+        margin-top: auto;
+    }
+    
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-section h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+    
+    .footer-section p, .footer-section a {
+        color: #ccc;
+        margin-bottom: 5px;
+        display: block;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    .footer-section a:hover {
+        color: #4CAF50;
+    }
+    
+    .copyright {
+        text-align: center;
+        padding-top: 15px;
+        margin-top: 15px;
+        border-top: 1px solid #444;
+        color: #999;
+        font-size: 12px;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 70px;
+            overflow: hidden;
+        }
+        
+        .sidebar-header .logo span,
+        .sidebar-menu li a span:not(.menu-icon) {
+            display: none;
+        }
+        
+        .sidebar-menu li a {
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .menu-icon {
+            margin-right: 0;
+            font-size: 20px;
+        }
+        
+        .main-content {
+            margin-left: 70px;
+        }
+        
+        .navbar {
+            padding: 15px 20px;
+        }
+        
+        .navbar-left h1 {
+            font-size: 20px;
+        }
+        
+        .user-info span {
+            display: none;
+        }
+        
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-content {
+            flex-direction: column;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .sidebar {
+            width: 0;
+        }
+        
+        .main-content {
+            margin-left: 0;
+        }
+        
+        .content {
+            padding: 20px 15px;
+        }
+    }
+</style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">Agri<span>Portal</span></div>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="Expert_Dashboard.html" class="active">
+                
+                <span>Dashboard</span>
+            </a></li>
+            <li><a href="View_Appointments.jsp">
+               
+                <span>View_Appointments</span>
+            </a></li>
+            <li><a href="Report.jsp">
+                <span>report</span>
+            </a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-left">
+                <h1>Krishi Expert Dashboard</h1>
+            </div>
+            <div class="navbar-right">
+                <div class="user-info">
+                    <div class="user-avatar">E</div>
+                    <span>Krishi Expert</span>
+                </div>
+               <button class="logout-btn">
+                   
+                     <a class="dropdown-item" href="index.html">Log out</a>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="content">
+            <div class="dashboard-header">
+                <h2>Krishi Expert Dashboard</h2>
+                <p>Manage appointments and generate reports for agricultural guidance</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-icon"></div>
+                    <h3>View_Appointments</h3>
+                    <p>View and manage farmer appointments for agricultural consultations</p>
+                    <a href="View_Appointments.jsp" class="card-link">View Appointments</a>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-icon"></div>
+                    <h3>report</h3>
+                    <p>Generate and view reports on consultations and farmer interactions</p>
+                    <a href="Report.jsp" class="card-link">View Reports</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>Agricultural Portal is a comprehensive platform connecting farmers, experts, and administrators.</p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <a href="index.html">Home</a>
+                        <a href="#">Services</a>
+                        <a href="#">Resources</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Contact Info</h3>
+                        <p>Email: info@agriportal.com</p>
+                        <p>Phone: +1 234 567 8900</p>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2023 Agricultural Portal. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

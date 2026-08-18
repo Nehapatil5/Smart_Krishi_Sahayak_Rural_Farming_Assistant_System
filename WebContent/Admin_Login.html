@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Login - Agricultural Portal</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        flex: 1;
+    }
+    
+    header {
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .logo span {
+        color: #4CAF50;
+    }
+    
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
+    
+    nav ul li {
+        margin-left: 20px;
+    }
+    
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+    
+    nav ul li a:hover {
+        color: #4CAF50;
+    }
+    
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 40px 0;
+    }
+    
+    .login-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+    }
+    
+    .login-card h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+        color: #333;
+        font-weight: 600;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #333;
+    }
+    
+    .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .form-group input:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        outline: none;
+    }
+    
+    .login-btn {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .login-btn:hover {
+        background-color: #4CAF50;
+    }
+    
+    .back-link {
+        margin-top: 20px;
+        text-align: center;
+    }
+    
+    .back-link a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .back-link a:hover {
+        color: #4CAF50;
+    }
+    
+    .back-link a::before {
+        content: "←";
+        margin-right: 5px;
+    }
+    
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 30px 0;
+        margin-top: auto;
+    }
+    
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin-bottom: 20px;
+    }
+    
+    .footer-section h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+    
+    .footer-section p, .footer-section a {
+        color: #ccc;
+        margin-bottom: 8px;
+        display: block;
+        text-decoration: none;
+    }
+    
+    .footer-section a:hover {
+        color: #4CAF50;
+    }
+    
+    .copyright {
+        text-align: center;
+        padding-top: 20px;
+        margin-top: 20px;
+        border-top: 1px solid #444;
+        color: #999;
+    }
+    
+    @media (max-width: 768px) {
+        .header-content {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        nav ul {
+            margin-top: 15px;
+            justify-content: center;
+        }
+        
+        .login-card {
+            padding: 30px 20px;
+        }
+        
+        .footer-content {
+            flex-direction: column;
+        }
+    }
+</style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Agri<span>Portal</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="login-container">
+            <div class="login-card">
+                <h2>Admin Login</h2>
+                <form action="Admin_Login" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+                
+                
+                <a href="index.html">&#8592; Back to Role Selection</a>
+</div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Agricultural Portal is a comprehensive platform connecting farmers, experts, and administrators to enhance agricultural productivity.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="#">Services</a>
+                    <a href="#">Resources</a>
+                    <a href="#">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Email: info@agriportal.com</p>
+                    <p>Phone: +1 234 567 8900</p>
+                    <p>Address: 123 Farm Street, Agriculture City</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Agricultural Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
